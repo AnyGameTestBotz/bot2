@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bot Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .status-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .online {
+            background-color: #2ecc71;
+        }
+        .offline {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-card">
+        <h1>Discord Bot Status</h1>
+        <p>
+            <span class="status-indicator {% if status.is_ready %}online{% else %}offline{% endif %}"></span>
+            Status: {% if status.is_ready %}Online{% else %}Offline{% endif %}
+        </p>
+        <p>Connected Servers: {{ status.guild_count }}</p>
+        <p>Active Ping Commands: {{ status.active_pings }}</p>
+        {% if status.last_ping %}
+        <p>Last Ping: {{ status.last_ping }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
